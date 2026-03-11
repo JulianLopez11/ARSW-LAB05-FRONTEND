@@ -90,9 +90,9 @@ Una vez conectado, el cliente se suscribe al **tópico** del board correspondien
 ```js
 onConnect: () => {
   stompClient.subscribe(
-    `/topic/boards.camilo.${boardName}`,  // Destino del tópico
+    // Destino del tópico
+    `/topic/boards.camilo.${boardName}`, 
     (stompMessage) => {
-      // stompMessage.body es el JSON serializado del board
       const board = JSON.parse(stompMessage.body);
       onMessageReceivedRef.current(board); // Callback de React
     }
@@ -166,26 +166,26 @@ return () => stompClient.deactivate(); // Cleanup de React useEffect
 import p5 from "p5";
 
 useEffect(() => {
-  const sketch = (p) => {       // 'p' es la instancia de p5
+  const sketch = (p) => {       
     p.setup = () => {
-      p.createCanvas(700, 410); // Crea el elemento <canvas>
-      p.background(220);        // Fondo gris inicial
+      p.createCanvas(700, 410);
+      //Fondo
+      p.background(220);      
     };
 
-    p.draw = () => {            // Se ejecuta ~60 veces por segundo
+    p.draw = () => {            
       if (p.mouseIsPressed) {
-        p.noStroke();           // Sin borde en el círculo
-        p.fill(MY_COLOR);       // Color del usuario actual
-        p.ellipse(p.mouseX, p.mouseY, 20, 20); // Dibuja círculo de 20x20px
+        p.noStroke();           
+        p.fill(MY_COLOR);       /
+        p.ellipse(p.mouseX, p.mouseY, 20, 20); 
       }
     };
   };
 
-  // Monta el sketch en el contenedor DOM
   const myp5 = new p5(sketch, containerRef.current);
   p5Ref.current = myp5; // Guardamos la instancia para usarla desde fuera
 
-  return () => myp5.remove(); // Desmonta el canvas al salir del componente
+  return () => myp5.remove(); 
 }, []);
 ```
 
