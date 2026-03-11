@@ -188,7 +188,9 @@ useEffect(() => {
   return () => myp5.remove(); 
 }, []);
 ```
+## Evidencia ejecución 
 
+![alt text](img/image.png)
 
 ## Autor
 
